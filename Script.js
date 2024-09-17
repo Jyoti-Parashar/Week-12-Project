@@ -5,11 +5,7 @@
  * 
  * 
  * /** 
- //fetch("https://6621c5cb27fcd16fa6c7e701.mockapi.io/tasks") //tasks api
-  fetch(" https://66c61941134eb8f43496bf4b.mockapi.io")
- // fetch(" https://66c61941134eb8f43496bf4b.mockapi.io")
- fetch(" https://66c61941134eb8f43496bf4b.mockapi.io")
- fetch("https://64407795792fe886a88f6162.mockapi.io/api/todos")  //todo api
+
  */
 
  const endpoinUrl="http://localhost:3000/tasks"
@@ -52,7 +48,7 @@ const addTodo = async (text) => {
   
   console.log("addTodo taking in : " , text)
   //fetch data from the server using the fetch API
-  const response = await fetch('http://localhost:3000/tasks', {
+  const response = await fetch(endpoinUrl, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -76,7 +72,7 @@ const addTodo = async (text) => {
 
 const updateTodo = async (text) => {
   //fetch data from the server using the fetch API
-  const response = await fetch('http://localhost:3000/tasks', {
+  const response = await fetch(endpoinUrl, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
