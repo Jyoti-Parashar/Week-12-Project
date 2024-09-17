@@ -5,14 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="./Style.css">
     <!--StyleSheet is not working-->
     <title>Document</title>
 </head>
 <body>
-    <button onclick="getTasks()" class="btn btn-primary" >Click me</button>
+    <h1 class="text-center">To-Do List</h1>
+   <!-- <button onclick="getTasks()" class="btn btn-primary" >Click me</button>-->
+   
+
+   
+    <div class= "container mt-5">
+   
+    <div class="input-group mb-3">
+
+    <form id="todoForm">
+        <input
+          type="text"
+          id="newTask"
+          class="form-control w-75"
+          placeholder="Add a new task"
+          required
+        />
+        <button class="btn btn-primary" id="addTodo" > Add </button>
+        
+      </form>
+    </div>
+
+    <div><table class="table table-striped">
+      <thead>
+        <tr>
+        <th>#</th>
+        <th>title</th>
+        <th>Completed</th>
+        <th>Last Created</th>
+      </tr>
+      </thead>
+      <tbody id="showTable"></tbody>
+
+    </table></div>
+  </div>
      <!--hooked jquery-->
-    <script src="script.js"></script>
+   
+     <script src="./node_modules/jquery/dist/jquery.min.js" ></script>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js" ></script>
+   
+    <script src="script.js"></script>
 </body>
 </html>
