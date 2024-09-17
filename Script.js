@@ -8,6 +8,7 @@
 
  */
 
+// API URL
  const endpoinUrl="http://localhost:3000/tasks"
 
 let tasks = []
@@ -20,22 +21,17 @@ async function getTasks() {
  try {
    //Use fetch api for response
    const response = await fetch(endpoinUrl);
+   // check the response status
    if (response.status!=200) {
      throw new Error(`Some Error, Status Code:${response.status}`);
    }
+   // get the data from jsaon object
    const data = await response.json();
    // console.log(data);
    tasks = data.reverse();
-  // console.log(tasks);
-  for (const task of tasks) {
-    lastId=task.id;
-  }
-
-
-  
-  // lastId=tasks[tasks.length-1].id;
-  // console.log(`lastId : ${lastId}`);
-   renderTasks();
+   
+  // render data on the screen
+  renderTasks();
   
  } catch (error) {
     console.log(error);
@@ -46,7 +42,7 @@ async function getTasks() {
 //add a new todo to the server
 const addTodo = async (text) => {
   
-  console.log("addTodo taking in : " , text)
+ // console.log("addTodo taking in : " , text)
   //fetch data from the server using the fetch API
   const response = await fetch(endpoinUrl, {
     method: "POST",
@@ -59,6 +55,8 @@ const addTodo = async (text) => {
   //convert the response to JSON
   const data = await response.json();
   // console.log({ data });
+
+  // render the added object
   getTasks()
   //return the data
   return data;
@@ -94,13 +92,13 @@ $("#addTodo").on("click", async () => {
   
   //get the value of the input field
   const text = $("#newTask").val();
-   console.log(text);
+  // console.log(text);
 
   if (!text) {
     alert("Please enter a todo");
     return;
   }
- //addTodo( text);
+
   //add the todo to the server
   try {
     await addTodo( text);
@@ -114,10 +112,14 @@ $("#addTodo").on("click", async () => {
 });
 
 async function renderTasks() {
+
+  //get the table element
   const showTable = document.getElementById("showTable")
+
+  // set the table html
   showTable.innerHTML = "";
   for (const task of tasks) {
-    console.log(task)
+   // console.log(task)
     const row = document.createElement("tr")
     row.innerHTML =
       `
@@ -128,8 +130,10 @@ async function renderTasks() {
         <td><button id="btn-Delete" class="btn btn-danger">Delete</button>
         <button class="btn btn-warning" id="EditTask"> Edit </button></td>
     `
+    // find delete button with query selector and add event listener to delete the row
     row.querySelector("#btn-Delete").addEventListener("click", async () => {
       const response = await fetch("http://localhost:3000/tasks/" + task.id, { method: "DELETE" });
+            
       const data = await response.json();
 
 
