@@ -128,7 +128,7 @@ async function renderTasks() {
         <td>${task.completed}</td>
         <td>${task.createdAt}</td>
         <td><button id="btn-Delete" class="btn btn-danger">Delete</button>
-        <button class="btn btn-warning" id="EditTask"> Edit </button></td>
+       
     `
     // find delete button with query selector and add event listener to delete the row
     row.querySelector("#btn-Delete").addEventListener("click", async () => {
